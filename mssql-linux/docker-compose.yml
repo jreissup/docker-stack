@@ -1,0 +1,21 @@
+version: '3.2'
+
+services:
+  mssqldev:
+    build: .
+    image: jreissup/mssqllinux:2019-sample-adv-works
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: password.123!!
+      MSSQL_DB: pocdb
+      MSSQL_USER: usrdev
+      MSSQL_PASSWORD: password.123!!
+      RESTORE_SAMPLE: Y
+    ports:
+      - "1433:1433"
+    #healthcheck:
+    #  test: ["CMD", "/opt/mssql-tools/bin/sqlcmd -U sa -P $SA_PASSWORD -Q 'select 1'"]
+    #  interval: 15s
+    #  timeout: 10s
+    #  retries: 3
+    container_name: mssqldev
